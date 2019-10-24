@@ -1,0 +1,18 @@
+---
+
+- block:
+    - name: Register node apt key
+      apt_key:
+        url: '{{ node_apt_key }}'
+        id: '68576280'
+        state: present
+
+    - name: Register node apt repository
+      apt_repository:
+        repo: '{{ node_apt_repository }}'
+        filename: ansible_roles_node
+        state: present
+        update_cache: yes
+      register: _node_repo
+  become: yes
+  tags: [node, packages] # FIXME Remove when this is fixed https://github.com/ansible/ansible/issues/30882
