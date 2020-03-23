@@ -18,7 +18,7 @@
 
     - name: Check node command is available
       command:
-        node
+        node --version
       changed_when: _node_command is failure
       check_mode: no
       ignore_errors: yes
